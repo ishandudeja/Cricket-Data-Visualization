@@ -1,0 +1,112 @@
+<!doctype html>
+<html class=no-js>
+
+<head>
+    <meta charset=utf-8>
+    <meta name=description>
+    <meta name=viewport content="width=device-width, initial-scale=1, minimal-ui">
+    <title>Cricket Data Visualization</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--<link rel=stylesheet href=styles/vendor.css>-->
+    <link rel=stylesheet href=styles/main.css>
+
+</head>
+
+<body>
+
+<div class=container>
+    <div class=row>
+        <div class="btn-group col-lg-6 col-md-6 col-sm-6 col-xs-6" role=group id=end_note>
+            <button type=button class="btn btn-default" id=batting>Batting</button>
+            <button type=button class="btn btn-default" id=bowling>Bowling</button>
+            <button type=button class="btn btn-default" id=econ_rate>Economy</button>
+            <button type=button class="btn btn-default" id=versus>vs Batting</button>
+            <button type=button class="btn btn-default" id=versusb>vs Bowling</button>
+        </div>
+        <form>
+            <div class="search form-group col" id=search_notice>
+                <input type="text" class="form-control" placeholder="Filter by player, birthplace, or country...">
+                <button type="button" style="display:none" ; class="btn btn-default search-clear">Clear Search</button>
+            </div>
+        </form>
+    </div>
+    <div id="tooltip" class="hidden"></div>
+    <div class=row>
+        <div id="graphic" class="col-lg-10 col-md-10 col-sm-10 col-xs-9"></div>
+        <div class="btn-group-vertical col-lg-2 col-md-2 col-sm-2 col-xs-3 flag-list bowling_statistics" role=group>
+            <button type=button class="btn btn-default nzb"><img class=flag src=images/nzl.png>NZ</button>
+            <button type=button class="btn btn-default ausb"><img class=flag src=images/aus.png>AUS</button>
+            <button type=button class="btn btn-default indb"><img class=flag src=images/ind.png>IND</button>
+            <button type=button class="btn btn-default sab"><img class=flag src=images/rsa.png>SA</button>
+            <button type=button class="btn btn-default srlb"><img class=flag src=images/sri.png>SRL</button>
+            <button type=button class="btn btn-default wib"><img class=flag src=images/win.png>WIN</button>
+            <button type=button class="btn btn-default pakb"><img class=flag src=images/pak.png>PAK</button>
+            <button type=button class="btn btn-default engb"><img class=flag src=images/eng.png>ENG</button>
+            <button type=button class="btn btn-default bngb"><img class=flag src=images/ban.png>BAN</button>
+            <button type=button class="btn btn-default all_teamsb">ALL</button>
+        </div>
+        <div class="btn-group-vertical col-lg-2 col-md-2 col-sm-2 col-xs-3 flag-list batting_statistics"
+             id=batting_notice role=group>
+            <button type=button class="btn btn-default nz"><img class=flag src=images/nzl.png>NZ</button>
+            <button type=button class="btn btn-default aus"><img class=flag src=images/aus.png>AUS</button>
+            <button type=button class="btn btn-default ind"><img class=flag src=images/ind.png>IND</button>
+            <button type=button class="btn btn-default sa"><img class=flag src=images/rsa.png>SA</button>
+            <button type=button class="btn btn-default srl"><img class=flag src=images/sri.png>SRL</button>
+            <button type=button class="btn btn-default wi"><img class=flag src=images/win.png>WIN</button>
+            <button type=button class="btn btn-default pak"><img class=flag src=images/pak.png>PAK</button>
+            <button type=button class="btn btn-default eng"><img class=flag src=images/eng.png>ENG</button>
+            <button type=button class="btn btn-default bng"><img class=flag src=images/ban.png>BAN</button>
+            <button type=button class="btn btn-default all_teams">ALL</button>
+        </div>
+        <div class="btn-group-vertical col-lg-2 col-md-2 col-sm-2 col-xs-3 flag-list economy_statistics" role=group>
+            <button type=button class="btn btn-default nze"><img class=flag src=images/nzl.png>NZ</button>
+            <button type=button class="btn btn-default ause"><img class=flag src=images/aus.png>AUS</button>
+            <button type=button class="btn btn-default inde"><img class=flag src=images/ind.png>IND</button>
+            <button type=button class="btn btn-default sae"><img class=flag src=images/rsa.png>SA</button>
+            <button type=button class="btn btn-default srle"><img class=flag src=images/sri.png>SRL</button>
+            <button type=button class="btn btn-default wie"><img class=flag src=images/win.png>WIN</button>
+            <button type=button class="btn btn-default pake"><img class=flag src=images/pak.png>PAK</button>
+            <button type=button class="btn btn-default enge"><img class=flag src=images/eng.png>ENG</button>
+            <button type=button class="btn btn-default bnge"><img class=flag src=images/ban.png>BAN</button>
+            <button type=button class="btn btn-default all_teamse">ALL</button>
+        </div>
+        <div class="btn-group-vertical col-lg-2 col-md-2 col-sm-2 col-xs-3 flag-list versus_statistics" role=group>
+            <button type=button class="btn btn-default nzau"> NZ vs AUS</button>
+            <button type=button class="btn btn-default auspak"> AUS vs PAK</button>
+            <button type=button class="btn btn-default nzsa"> NZ vs SA</button>
+            <button type=button class="btn btn-default nzin"> NZ vs IND</button>
+            <button type=button class="btn btn-default nzwi"> NZ vs WI</button>
+            <button type=button class="btn btn-default indpak"> IND vs PAK</button>
+            <button type=button class="btn btn-default aussa"> AUS vs SA</button>
+            <button type=button class="btn btn-default auind"> AUS vs IND</button>
+            <button type=button class="btn btn-default engban"> ENG vs BAN</button>
+        </div>
+        <div class="btn-group-vertical col-lg-2 col-md-2 col-sm-2 col-xs-3 flag-list versusb_statistics" role=group>
+            <button type=button class="btn btn-default nzaub"> NZ vs AUS</button>
+            <button type=button class="btn btn-default auspakb"> AUS vs Pak</button>
+            <button type=button class="btn btn-default nzsab"> NZ vs SA</button>
+            <button type=button class="btn btn-default nzinb"> NZ vs IND</button>
+            <button type=button class="btn btn-default nzwib"> NZ vs WI</button>
+            <button type=button class="btn btn-default indpakb"> IND vs PAK</button>
+            <button type=button class="btn btn-default aussab"> AUS vs SA</button>
+            <button type=button class="btn btn-default auindb"> AUS vs IND</button>
+            <button type=button class="btn btn-default engbanb"> ENG vs BAN</button>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row" id="detail">
+
+
+    </div>
+
+
+
+
+</div>
+
+<script src=scripts/vendor.js></script>
+<script src=scripts/main.js></script>
+</body>
+
+</html>
